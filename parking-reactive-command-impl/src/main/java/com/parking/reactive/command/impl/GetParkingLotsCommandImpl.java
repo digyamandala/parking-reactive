@@ -1,7 +1,9 @@
 package com.parking.reactive.command.impl;
 
 import com.parking.reactive.command.GetParkingLotsCommand;
-import com.parking.reactive.command.TimeHelper;
+import com.parking.reactive.command.TimeService;
+import com.parking.reactive.command.helper.PriceHelper;
+import com.parking.reactive.command.helper.TimeHelper;
 import com.parking.reactive.command.helper.WebResponseHelper;
 import com.parking.reactive.command.model.request.GetParkingLotsCommandRequest;
 import com.parking.reactive.repository.ParkingLotRepository;
@@ -13,19 +15,18 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 @Service
 public class GetParkingLotsCommandImpl implements GetParkingLotsCommand {
 
   private final ParkingLotRepository parkingLotRepository;
 
-  private final TimeHelper timeHelper;
+  private final TimeService timeService;
 
   public GetParkingLotsCommandImpl(ParkingLotRepository parkingLotRepository,
-      TimeHelper timeHelper) {
+      TimeService timeService) {
     this.parkingLotRepository = parkingLotRepository;
-    this.timeHelper = timeHelper;
+    this.timeService = timeService;
   }
 
   @Override
@@ -43,26 +44,10 @@ public class GetParkingLotsCommandImpl implements GetParkingLotsCommand {
   }
 
   private void setDurationAndPrice(ParkingLotWebResponse parkingLotWebResponse) {
-    Long currentTime = timeHelper.getCurrentTimeMillis();
-    Long duration = getDuration(parkingLotWebResponse.getInTime(), currentTime);
+    Long currentTime = timeService.getCurrentTimeMillis();
+    Long duration = TimeHelper.getDuration(parkingLotWebResponse.getInTime(), currentTime);
     parkingLotWebResponse.setDuration(duration);
     Optional.ofNullable(duration)
-        .ifPresent(duration1 -> parkingLotWebResponse.setPrice(getPrice(duration1)));
-  }
-
-  private Long getPrice(Long duration) {
-    if (duration <= 0) {
-      return 2000L;
-    } else if (duration > 10) {
-      return 20000L;
-    } else {
-      return duration * 2000;
-    }
-  }
-
-  private static Long getDuration(Long inDate, long current) {
-    return Optional.ofNullable(inDate)
-        .map(in -> TimeUnit.MILLISECONDS.toHours(current - inDate))
-        .orElse(null);
+        .ifPresent(duration1 -> parkingLotWebResponse.setPrice(PriceHelper.getPrice(duration1)));
   }
 }

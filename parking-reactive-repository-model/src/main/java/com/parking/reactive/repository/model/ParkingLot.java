@@ -14,8 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = CollectionNames.PARKING_LOT)
 public class ParkingLot {
 
-  private Long duration;
-
   private Integer floor;
 
   @Id
@@ -26,8 +24,6 @@ public class ParkingLot {
   private Integer number;
 
   private boolean occupied;
-
-  private Long outTime;
 
   private String plateNumber;
 }

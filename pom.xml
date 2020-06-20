@@ -15,6 +15,7 @@
     <module>parking-reactive-web-model</module>
     <module>parking-reactive-command-helper</module>
     <module>parking-reactive-web-helper</module>
+    <module>parking-reactive-event</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>

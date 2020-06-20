@@ -23,6 +23,11 @@
       <artifactId>parking-reactive-web</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.parking.reactive</groupId>
+      <artifactId>parking-reactive-event</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

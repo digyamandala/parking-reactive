@@ -1,12 +1,12 @@
 package com.parking.reactive.command.impl;
 
-import com.parking.reactive.command.TimeHelper;
+import com.parking.reactive.command.TimeService;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
 @Component
-public class TimeHelperImpl implements TimeHelper {
+public class TimeServiceImpl implements TimeService {
 
   @Override
   public Long getCurrentTimeMillis() {

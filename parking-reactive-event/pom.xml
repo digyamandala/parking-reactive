@@ -9,23 +9,23 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>parking-reactive-command-impl</artifactId>
+  <artifactId>parking-reactive-event</artifactId>
 
   <dependencies>
     <dependency>
       <groupId>com.parking.reactive</groupId>
-      <artifactId>parking-reactive-command</artifactId>
+      <artifactId>parking-reactive-web</artifactId>
+      <version>${project.version}</version>
+    </dependency>    <dependency>
+      <groupId>com.parking.reactive</groupId>
+      <artifactId>parking-reactive-command-parent</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.parking.reactive</groupId>
-      <artifactId>parking-reactive-command-helper</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parking.reactive</groupId>
-      <artifactId>parking-reactive-repository</artifactId>
-      <version>${project.version}</version>
+      <artifactId>parking-reactive-repository-model</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>

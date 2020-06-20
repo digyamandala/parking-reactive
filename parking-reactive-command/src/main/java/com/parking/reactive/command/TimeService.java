@@ -1,6 +1,6 @@
 package com.parking.reactive.command;
 
-public interface TimeHelper {
+public interface TimeService {
 
   Long getCurrentTimeMillis();
 }
