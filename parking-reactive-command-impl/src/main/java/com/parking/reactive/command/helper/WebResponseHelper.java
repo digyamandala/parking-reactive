@@ -1,4 +1,4 @@
-package helper;
+package com.parking.reactive.command.helper;
 
 import com.parking.reactive.repository.model.ParkingLot;
 import com.parking.reactive.web.model.response.ParkingLotWebResponse;
